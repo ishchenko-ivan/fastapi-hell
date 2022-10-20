@@ -1,5 +1,6 @@
 #Population of the added column with values
-
+import os
+print(os.environ)
 from db.crud import Session
 from db.models import dbItem
 

@@ -3,21 +3,24 @@ version: "3.8"
 services:
   db:
     image: postgres:13-alpine
+    container_name: database
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     ports:
       - "5432:5432"
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=secret
-      - POSTGRES_DB=items
+    env_file:
+      - .env
+    
   web:
+    container_name: ft_app
     build: .
-    command: bash -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+
     volumes:
       - .:/project
     ports:
       - "8000:8000"
+    env_file:
+      - .env
     depends_on:
       - db
 
@@ -34,3 +37,13 @@ services:
 
 volumes:
   postgres_data:
+
+    #! .env
+    #! cont name
+    #! cmd
+    #! reqs file
+    #! readme + .gitignore
+    #! pycache ---
+    # db - only
+    # crud dir (+ __init__.py) - модуль
+    # models, schemas

@@ -1,0 +1,5 @@
+fastapi
+uvicorn
+sqalchemy
+alembic
+psycopg2
